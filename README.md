@@ -8,3 +8,8 @@ The SQL code should be return in Mysql workbench or any other IDE but it should 
 
 To help me make this code better ,contact me through mail (lxngvx7@gmail.com)
 for on instagram : xd_ansh021
+
+Functionality:
+1. If the user forget its password for login page he can reset it there is forget password function for that.
+2. All datasave into sepearte database , no other user can see different user password.
+3. It's simple to understand.
