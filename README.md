@@ -6,5 +6,5 @@ Prerequisites the user should know about python and  have installed python and h
 
 The SQL code should be return in Mysql workbench or any other IDE but it should support MySQL as for this code provided.
 
-To help me make this code better ,conatact me through mail (lxngvx7@gmail.com)
+To help me make this code better ,contact me through mail (lxngvx7@gmail.com)
 for on instagram : xd_ansh021
