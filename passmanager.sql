@@ -1,3 +1,5 @@
+/* Read How to use sql code to execute I correctly :) */
+
 CREATE DATABASE password_users;
 USE password_users;
 
