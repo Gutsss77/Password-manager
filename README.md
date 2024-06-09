@@ -4,7 +4,7 @@ I have provided the code in the file(passmanager.py). Basically this project is 
 
 Prerequisites the user should know about python and  have installed python and have tkinter library of python as well as he should have another library for database connectivity 'mysql.connector' in his system to execute this code successfully also I'm Providing the Mysql(query code) code so that a user can easily run this code with database connectivity.
 
-The SQL code should be return in Mysql workbench or any other IDE but it should support MySQL as for this code provided.
+The SQL code should be written in Mysql workbench or any other IDE but it should support MySQL as for this code provided.
 
 To help me make this code better ,contact me through mail (lxngvx7@gmail.com)
 for on instagram : xd_ansh021
