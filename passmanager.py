@@ -1,3 +1,5 @@
+# Please read the README.md file before implementing this 
+# Also User should know how to use Sql (read: How to use sql code
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 import mysql.connector
