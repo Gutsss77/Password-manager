@@ -24,15 +24,9 @@ password VARCHAR(70) NOT NULL,
 FOREIGN KEY (user_id) REFERENCES log_users(id) ON DELETE CASCADE
 );
 
-DROP TABLE web_passwords;
-DROP TABLE log_users;
-
 CREATE USER 'Gutsss'@'localhost' IDENTIFIED BY 'gutsss77';
 GRANT ALL PRIVILEGES ON password_users.* TO 'Gutsss'@'localhost';
 FLUSH PRIVILEGES;
 
 SELECT * FROM web_passwords;
 SELECT * FROM log_users;
-
-DROP USER 'Gutsss'@'localhost';
-FLUSH PRIVILEGES;
