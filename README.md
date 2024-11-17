@@ -10,6 +10,7 @@ To help me make this code better ,contact me through mail (lxngvx7@gmail.com)
 for on instagram : xd_ansh021
 
 Functionality:
-1. If the user forget its password for login page he can reset it there is forget password function for that.
-2. All datasave into sepearte database , no other user can see different user password.
+1. If the user forget its password for login he can reset it, there is a forget password function for that.
+2. All datasave into sepearte database , no other user can see different users password.
 3. It's simple to understand.
+4. It's in developing stage! :)
