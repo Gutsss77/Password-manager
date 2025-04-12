@@ -1,10 +1,9 @@
-# Please read the README.md file before implementing this 
-# Also User should know how to use Sql (read: How to use sql code
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 import mysql.connector
 
-def login_page():  # function for main window for logging
+# --- LOGIN FUNCTION ---
+def login_page():
     username = entry_username.get()
     password = entry_password.get()
 
@@ -15,21 +14,26 @@ def login_page():  # function for main window for logging
     try:
         conn = mysql.connector.connect(
             host="localhost",
-            user="Gutsss",  #change according to your mysql user(root)
-            password="gutsss77",  #change according to your user password of mysql(root)
+            user="Gutsss",  # change according to your MySQL user
+            password="gutsss77",  # change according to your MySQL password
             database="password_users"
         )
 
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM log_users  WHERE username = %s AND password = %s',
+        cursor.execute('SELECT * FROM log_users WHERE username = %s AND password = %s',
                        (username, password))
         user = cursor.fetchone()
-
         conn.close()
 
         if user:
-            user_data = f"ID: {user[0]}\n First Name: {user[1]}\n Username: {user[3]}\n Email: {user[4]}\n Contact Number: {user[5]}"
-            messagebox.showinfo("Login Successful!", f"Login Successful!\n\n User Data:\n{user_data}")
+            user_data = (
+                f"ID: {user[0]}\n"
+                f"First Name: {user[1]}\n"
+                f"Username: {user[3]}\n"
+                f"Email: {user[4]}\n"
+                f"Contact Number: {user[5]}"
+            )
+            messagebox.showinfo("Login Successful!", f"Login Successful!\n\nUser Data:\n{user_data}")
             open_password_manager(user[0])
         else:
             messagebox.showerror("Login", "Invalid username or password")
@@ -37,6 +41,8 @@ def login_page():  # function for main window for logging
     except mysql.connector.Error as err:
         messagebox.showerror("Database error", str(err))
 
+
+# --- PASSWORD MANAGER FUNCTION ---
 def open_password_manager(user_id):
     def add_password():
         website = simpledialog.askstring("Input", "Enter the website:")
@@ -55,8 +61,10 @@ def open_password_manager(user_id):
                 database="password_users"
             )
             cursor = conn.cursor()
-            cursor.execute('INSERT INTO web_passwords (user_id, website, username, password) VALUES (%s, %s, %s, %s)',
-                           (user_id, website, username, password))
+            cursor.execute(
+                'INSERT INTO web_passwords (user_id, website, username, password) VALUES (%s, %s, %s, %s)',
+                (user_id, website, username, password)
+            )
             conn.commit()
             conn.close()
             messagebox.showinfo("Success", "Password added successfully!")
@@ -93,7 +101,8 @@ def open_password_manager(user_id):
     view_passwords()
 
 
-def registration_page(): #function for new person registration
+# --- REGISTRATION PAGE ---
+def registration_page():
     def register():
         first_name = entry_first_name.get()
         last_name = entry_last_name.get()
@@ -118,11 +127,11 @@ def registration_page(): #function for new person registration
                 password="gutsss77",
                 database="password_users"
             )
-
             cursor = conn.cursor()
-            cursor.execute('''INSERT INTO log_users (first_name, last_name, username, email, contact_no, password)
-                           VALUES (%s,%s,%s,%s,%s,%s)''', (first_name, last_name, username, email, contact_no, password))
-
+            cursor.execute('''
+                INSERT INTO log_users (first_name, last_name, username, email, contact_no, password)
+                VALUES (%s, %s, %s, %s, %s, %s)
+            ''', (first_name, last_name, username, email, contact_no, password))
             conn.commit()
             messagebox.showinfo("Success", "Registration Successful!")
             registration_window.destroy()
@@ -134,42 +143,37 @@ def registration_page(): #function for new person registration
         finally:
             conn.close()
 
-    #creating window for new registraring person
     registration_window = tk.Toplevel(root)
     registration_window.title("Registration Page")
 
-    tk.Label(registration_window, text="First name").grid(row=0, column=0, padx=10, pady=10)
-    tk.Label(registration_window, text="Last name").grid(row=1, column=0, padx=10, pady=10)
-    tk.Label(registration_window, text="Username").grid(row=2, column=0, padx=10, pady=10)
-    tk.Label(registration_window, text="Email").grid(row=3, column=0, padx=10, pady=10)
-    tk.Label(registration_window, text="Contact Number").grid(row=4, column=0, padx=10, pady=10)
-    tk.Label(registration_window, text="Password").grid(row=5, column=0, padx=10, pady=10)
-    tk.Label(registration_window, text="Confirm Password").grid(row=6, column=0, padx=10, pady=10)
+    labels = ["First name", "Last name", "Username", "Email", "Contact Number", "Password", "Confirm Password"]
+    for i, text in enumerate(labels):
+        tk.Label(registration_window, text=text).grid(row=i, column=0, padx=10, pady=10)
 
     entry_first_name = tk.Entry(registration_window)
     entry_last_name = tk.Entry(registration_window)
-    entry_new_username= tk.Entry(registration_window)
+    entry_new_username = tk.Entry(registration_window)
     entry_email = tk.Entry(registration_window)
     entry_contact_no = tk.Entry(registration_window)
     entry_create_password = tk.Entry(registration_window, show='*')
     entry_confirm_password = tk.Entry(registration_window, show='*')
 
-    entry_first_name.grid(row=0, column=1, padx=10, pady=10)
-    entry_last_name.grid(row=1, column=1, padx=10, pady=10)
-    entry_new_username.grid(row=2, column=1, padx=10, pady=10)
-    entry_email.grid(row=3, column=1, padx=10, pady=10)
-    entry_contact_no.grid(row=4, column=1, padx=10, pady=10)
-    entry_create_password.grid(row=5, column=1, padx=10, pady=10)
-    entry_confirm_password.grid(row=6, column=1, padx=10, pady=10)
+    entries = [
+        entry_first_name, entry_last_name, entry_new_username,
+        entry_email, entry_contact_no, entry_create_password, entry_confirm_password
+    ]
+
+    for i, entry in enumerate(entries):
+        entry.grid(row=i, column=1, padx=10, pady=10)
 
     tk.Button(registration_window, text="Register", command=register).grid(row=8, column=0, columnspan=2, pady=10)
 
 
-def open_forget_password():  # function for password forget
-    def reset_password():  # function to reset password
+# --- FORGOT PASSWORD FUNCTION ---
+def open_forget_password():
+    def reset_password():
         username = entry_forget_username.get()
         new_password = entry_forget_password.get()
-
 
         try:
             conn = mysql.connector.connect(
@@ -179,9 +183,8 @@ def open_forget_password():  # function for password forget
                 database="password_users"
             )
             cursor = conn.cursor()
-
-            cursor.execute('''UPDATE log_users SET password = %s WHERE 
-                           username = %s''', new_password, username)
+            cursor.execute('UPDATE log_users SET password = %s WHERE username = %s',
+                           (new_password, username))
 
             if cursor.rowcount == 0:
                 messagebox.showerror("Error", "Username not found!")
@@ -194,7 +197,6 @@ def open_forget_password():  # function for password forget
         except mysql.connector.Error as err:
             messagebox.showerror("Database Error", str(err))
 
-    # creating the forget password window
     password_forget_window = tk.Toplevel(root)
     password_forget_window.title("Reset Password")
 
@@ -207,10 +209,13 @@ def open_forget_password():  # function for password forget
     entry_forget_username.grid(row=0, column=1, padx=10, pady=10)
     entry_forget_password.grid(row=1, column=1, padx=10, pady=10)
 
-    tk.Button(password_forget_window, text="Reset Password", command=reset_password).grid(row=2, column=0, columnspan=2, pady=10)
+    tk.Button(password_forget_window, text="Reset Password", command=reset_password).grid(
+        row=2, column=0, columnspan=2, pady=10
+    )
 
 
-root = tk.Tk()  # gui of main window
+# --- MAIN GUI ---
+root = tk.Tk()
 root.title("Login Page")
 
 tk.Label(root, text="Username").grid(row=0, column=0, padx=10, pady=10)
@@ -223,7 +228,11 @@ entry_username.grid(row=0, column=1, padx=10, pady=10)
 entry_password.grid(row=1, column=1, padx=10, pady=10)
 
 tk.Button(root, text="Login", command=login_page).grid(row=2, column=0, columnspan=2, pady=10)
-tk.Button(root, text="Forget Password", command=open_forget_password).grid(row=3, column=0, columnspan=2, pady=10)  # will open new window for password reset
+tk.Button(root, text="Forget Password", command=open_forget_password).grid(row=3, column=0, columnspan=2, pady=10)
+tk.Button(root, text="Register", command=registration_page).grid(row=4, column=0, columnspan=2, pady=10)
+
+root.mainloop()
+
 tk.Button(root, text="Register", command=registration_page).grid(row=4, column=0, columnspan=2, pady=10)  # will open new window for new registration
 
 root.mainloop()
