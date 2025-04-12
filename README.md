@@ -1,16 +1,34 @@
 # Password-manager
-I am Ansh Sharma, I have created this project based on python tkinter library and having a database connectivity also using MySQL database.
-I have provided the code in the file(passmanager.py). Basically this project is based on storing the password of user which he uses in different websites. For example : Let a user 'A' , he/she have accounts on 3 websites instagram, gmail, facebook so rather than saving his password any other place he can use this application to store his/her password. In this application the user register for an account where he create a username and password after that he uses that username and password to store his passwords into it.
+Hi! I'm Ansh Sharma, and this project is a simple yet functional Password Manager application developed using Python's tkinter library for the GUI and MySQL for database connectivity.
+The main purpose of this application is to securely store user passwords for various websites. For example, if a user has accounts on Instagram, Gmail, and Facebook, they can use this app to store all those credentials safely in one place.
 
-Prerequisites the user should know about python and  have installed python and have tkinter library of python as well as he should have another library for database connectivity 'mysql.connector' in his system to execute this code successfully also I'm Providing the Mysql(query code) code so that a user can easily run this code with database connectivity.
+## Features
+1. User Registration & Login
+    Users can register by creating a username and password. After logging in, they can store and manage their website credentials.
+2. Secure Password Storage
+    Each user’s data is stored separately in the database, ensuring that no other user can access another user's credentials.
+3. Password Reset:
+    Forgot your password? No worries. The app includes a "Forgot Password" feature to reset your login credentials.
+4. Simple GUI
+    Built using Tkinter — it's easy to use and understand, even for beginners.
 
-The SQL code should be written in Mysql workbench or any other IDE but it should support MySQL as for this code provided.
+Still in Development : This is a work in progress, and I’m actively working to add more features and improve security.
 
-To help me make this code better ,contact me through mail (lxngvx7@gmail.com)
-for on instagram : xd_ansh021
+## Prerequisites
+Before running this application, ensure you have the following:
+1. Python installed (version 3.6+ recommended)
+2. Required Python libraries:
+   
+   2.1 Tkinter (usually included with Python)
+   
+   2.2 mysql-connector-python (pip install mysql-connector-python)
+3. A MySQL server installed and running (e.g., MySQL Workbench)
 
-Functionality:
-1. If the user forget its password for login he can reset it, there is a forget password function for that.
-2. All datasave into sepearte database , no other user can see different users password.
-3. It's simple to understand.
-4. It's in developing stage! :)
+## Getting Started
+Clone the repository or download the passmanager.py file.
+Set up your MySQL database using the script above.
+Make sure all required libraries are installed.
+Run the ```passmanager.py``` script:
+
+```bash
+python passmanager.py 
